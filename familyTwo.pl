@@ -24,5 +24,12 @@ grandson(X, Y) :- parent(P, X), parent(Y, P), male(X).
 
 firstCousin(X, Y) :- parent(P1, X), parent(P2, Y), sibling(P1, P2), X \= Y, \+ sibling(X, Y).
 
+sibling(X, Y) :- parent(Z, X), parent(Z, Y), X \= Y.
+
+descendant(X, Y) :- parent(Y, X).
+descendant(X, Y) :- parent(Z, X), descendant(Z, Y).
+
+
+
 
 
