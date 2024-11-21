@@ -31,6 +31,7 @@ connect(key_room, pick_up, key_on_me).
 connect(key_on_me, right, gate).
 connect(maze(2), right, secret_room).
 connect(secret_room, pick_up, book_on_me).
+connect(secret_room, left, maze(2)). 
 connect(maze(3), left, maze(0)).
 connect(maze(3), right, maze(3)).
 
@@ -92,6 +93,24 @@ treasure :-
     at(you, Loc),
     at(treasure, Loc),
     write('You cannot claim the treasure without the Book of Knowledge.\n'),
+    !.
+
+pick_up :-
+    at(you, secret_room),
+    \+ has(book), % Ensure the player doesn't already have the book
+    assert(has(book)),
+    write('You picked up the Book of Knowledge.\n'),
+    !.
+
+pick_up :-
+    at(you, key_room),
+    \+ has(key), % Ensure the player doesn't already have the key
+    assert(has(key)),
+    write('You picked up the key.\n'),
+    !.
+
+pick_up :-
+    write('There is nothing here to pick up.\n'),
     !.
 
 cliff :-
