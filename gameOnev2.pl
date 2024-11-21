@@ -31,7 +31,6 @@ connect(key_room, pick_up, key_on_me).
 connect(key_on_me, right, gate).
 connect(maze(2), right, secret_room).
 connect(secret_room, pick_up, book_on_me).
-connect(secret_room, left, maze(2)). 
 connect(maze(3), left, maze(0)).
 connect(maze(3), right, maze(3)).
 
